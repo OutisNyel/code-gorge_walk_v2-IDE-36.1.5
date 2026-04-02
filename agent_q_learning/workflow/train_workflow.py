@@ -115,7 +115,12 @@ def workflow(envs, agents, logger=None, monitor=None, *args, **kwargs):
 
                 # Calculate shaped reward
                 # 计算塑形后的奖励
-                reward = reward_shaping(next_env_reward, next_env_obs)
+                reward = reward_shaping(
+                    next_env_reward,
+                    next_env_obs,
+                    current_feature=obs_data.feature,
+                    next_feature=next_obs_data.feature,
+                )
 
                 # Check if episode is done and update win count
                 # 检查回合是否结束并更新胜利计数

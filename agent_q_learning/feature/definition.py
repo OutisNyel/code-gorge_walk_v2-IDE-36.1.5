@@ -33,7 +33,7 @@ def sample_process(list_game_data):
     ]
 
 
-def reward_shaping(env_reward, env_obs):
+def reward_shaping(env_reward, env_obs, current_feature: int, next_feature: int):
     """
     Shape reward signal for better learning
     塑形奖励信号以改善学习效果
@@ -55,9 +55,17 @@ def reward_shaping(env_reward, env_obs):
     if terminated:
         reward += score
 
-    # Reward for collecting treasure chests during episode
-    # 回合期间收集宝箱的奖励
-    if score > 0 and not terminated:
-        reward += score
+    if not terminated:
+        # Reward for collecting treasure chests during episode
+        # 回合期间收集宝箱的奖励
+        if score > 0:
+            reward += score
+        elif score == 0:
+            # Step penalty
+            if current_feature // 1024 == next_feature // 1024:
+                reward -= 10
+            # Wall-hit penalty
+            else:
+                reward -= 1
 
     return reward
