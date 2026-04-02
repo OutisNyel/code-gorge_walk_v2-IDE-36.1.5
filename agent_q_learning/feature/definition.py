@@ -63,7 +63,7 @@ def reward_shaping(env_reward, env_obs, current_feature: int, next_feature: int)
         elif score == 0:
             # Step penalty
             if current_feature // 1024 == next_feature // 1024:
-                reward -= 10
+                reward -= 8
             # Wall-hit penalty
             else:
                 reward -= 1

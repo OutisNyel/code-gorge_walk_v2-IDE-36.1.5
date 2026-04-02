@@ -14,8 +14,8 @@ class Config:
 
     STATE_SIZE = 64 * 64 * 1024 # 地图大小 \times 所有宝箱编码可能性2^{10}
     ACTION_SIZE = 4
-    LEARNING_RATE = 0.8
-    GAMMA = 0.9
+    LEARNING_RATE = 0.25
+    GAMMA = 0.97
     EPSILON = 0.1
     EPISODES = 10000
 
